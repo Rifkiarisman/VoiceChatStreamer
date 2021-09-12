@@ -23,7 +23,7 @@ from bot import vcusr, GROUP_CALLS
 
 MISC_DB = {}
 
-@Client.on_message(filters.command("endvc", "!"))
+@Client.on_message(filters.command("endvc", "."))
 async def leave_vc(client, message):
     CHAT_ID = message.chat.id
     if not str(CHAT_ID).startswith("-100"): return
@@ -40,7 +40,7 @@ async def dont_do_this_vc(client, message):
     dbz = str(GROUP_CALLS) + "\n" + str(MISC_DB)
     await message.reply(dbz)
     
-@Client.on_message(filters.command("pause", "!"))
+@Client.on_message(filters.command("pause", "."))
 async def pause_vc(client, message):
     CHAT_ID = message.chat.id
     if not str(CHAT_ID).startswith("-100"): return
@@ -60,7 +60,7 @@ async def pause_vc(client, message):
         elif status == "PAUSE:True":
             return await message.reply("__Already Paused.__")
           
-@Client.on_message(filters.command("resume", "!"))
+@Client.on_message(filters.command("resume", "."))
 async def resume_vc(client, message):
     CHAT_ID = message.chat.id
     if not str(CHAT_ID).startswith("-100"): return
