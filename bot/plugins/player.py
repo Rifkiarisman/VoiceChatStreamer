@@ -36,22 +36,22 @@ async def check_vc_before_play(group_call, chat_id):
 async def help_vc(client, message):
     text = '''====== Help Menu ======
 **Play as Audio**
-- !play __(reply to audio / youtube url / search query)__
-- !radio __(radio stream url)__
+- $play __(reply to audio / youtube url / search query)__
+- $radio __(radio stream url)__
 
 **Play as Video**
-- !stream __(reply to video / youtube url / search query)__
-- !live __(youtube live stream url)__
+- $stream __(reply to video / youtube url / search query)__
+- $live __(youtube live stream url)__
 
 **Extra**
-- !endvc: Leave from vc
-- !pause: Pause the vc
-- !resume: Resume the vc
-- !video: Download url or search query in video format
-- !audio: Download url or search query in audio format'''
+- $endvc: Leave from vc
+- $pause: Pause the vc
+- $resume: Resume the vc
+- $video: Download url or search query in video format
+- $audio: Download url or search query in audio format'''
     await message.reply(text)
 
-@Client.on_message(filters.command("live", "."))
+@Client.on_message(filters.command("live", "$"))
 async def live_vc(client, message):
     CHAT_ID = message.chat.id
     if not str(CHAT_ID).startswith("-100"): return
@@ -78,7 +78,7 @@ async def live_vc(client, message):
         await message.reply(str(e))
         return await group_call.stop()
 
-@Client.on_message(filters.command("radio", "."))
+@Client.on_message(filters.command("radio", "$"))
 async def radio_vc(client, message):
     CHAT_ID = message.chat.id
     if not str(CHAT_ID).startswith("-100"): return
@@ -100,7 +100,7 @@ async def radio_vc(client, message):
         await message.reply(str(e))
         return await group_call.stop()
     
-@Client.on_message(filters.command("play", "."))
+@Client.on_message(filters.command("play", "$"))
 async def play_vc(client, message):
     CHAT_ID = message.chat.id
     if not str(CHAT_ID).startswith("-100"): return
@@ -134,7 +134,7 @@ async def play_vc(client, message):
         await message.reply(str(e))
         return await group_call.stop()
 
-@Client.on_message(filters.command("stream", "."))
+@Client.on_message(filters.command("stream", "$"))
 async def stream_vc(client, message):
     CHAT_ID = message.chat.id
     if not str(CHAT_ID).startswith("-100"): return
